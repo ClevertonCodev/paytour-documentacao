@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Documentação do Sistema</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f2f2f2;
+      }
+
+      header {
+        background-color: #333;
+        color: #fff;
+        text-align: center;
+        padding: 20px;
+      }
+
+      h1 {
+        margin: 0;
+        font-size: 24px;
+      }
+
+      .container {
+        max-width: 800px;
+        margin: 20px auto;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      h2 {
+        font-size: 20px;
+        margin-top: 20px;
+      }
+
+      code {
+        background-color: #f2f2f2;
+        font-family: Consolas, monospace;
+        padding: 2px 4px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+      }
+
+      pre {
+        background-color: #f2f2f2;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        overflow-x: auto;
+      }
+
+      a {
+        color: #007bff;
+        text-decoration: none;
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Documentação do Sistema</h1>
+      <p>Nota: O sistema requer PHP 7.3</p>
+    </header>
+    <div class="container">
+      <h2>Limpeza de Cache</h2>
+      <p>Para limpar o cache do sistema, utilize os seguintes comandos:</p>
+      <pre><code>./paytour-cli admin:clear-cache</code> (No admin geral)</pre>
+      <pre><code>./paytour-cli loja:clear-cache 18</code> (substitua "18" pelo id da loja desejada)</pre>
+
+      <h2>Deploy</h2>
+      <p>
+        Para realizar o deploy do sistema no ambiente de staging, execute o
+        seguinte comando:
+      </p>
+      <pre><code>dep deploy staging</code></pre>
+
+      <h2>Frontend Vue.js</h2>
+      <p>
+        Para desenvolvimento e copilar no Vue.js, acesse a pasta "frontend" e
+        utilize os seguintes comandos:
+      </p>
+      <pre><code>npm run dev</code></pre>
+      <pre><code>npm run watch</code></pre>
+      <pre><code>npm run prod</code></pre>
+      <p>
+        Referência:
+        <a href="https://v2.vuejs.org/" target="_blank">Documentação Vue.js</a>
+      </p>
+
+      <h2>Selects personalizados Vue.js</h2>
+      <p>
+        Utilize o componente "Multiselect" para seleção de imagens:
+        <a
+          href="https://vue-multiselect.js.org/#sub-single-select-object"
+          target="_blank"
+          >Vue-Multiselect</a
+        >
+      </p>
+      <p>
+        Utilize o componente "Options.vue" para ícones, ele aceita um array de
+        objetos JavaScript.
+      </p>
+
+      <h2>Iniciar o Servidor PHP</h2>
+      <p>Inicie o servidor PHP localmente:</p>
+      <pre><code>php serve</code></pre>
+
+      <h2>Migrations</h2>
+      <p>
+        Para criar uma nova migração, siga a documentação
+        <a
+          href="https://netlor-phinx.readthedocs.io/en/v0.8.1/migrations.html#creating-a-new-migration"
+          target="_blank"
+          >Netlor Phinx</a
+        >
+        e utilize o seguinte comando:
+      </p>
+      <pre><code>./phinx create 'nome'</code></pre>
+      <h2>Executar Migrações de Banco de Dados</h2>
+      <p>
+        Para aplicar migrações de banco de dados, utilize o comando a seguir:
+      </p>
+      <pre><code>./phinx migrate</code></pre>
+      <p>
+        Esse comando executa todas as migrações pendentes que ainda não foram
+        aplicadas ao banco de dados. As migrações são scripts que descrevem as
+        alterações na estrutura do banco de dados, como criar tabelas, adicionar
+        colunas e modificar índices.
+      </p>
+      <p>
+        Após a execução bem-sucedida, o histórico de migrações é atualizado,
+        garantindo que as migrações não sejam reaplicadas no futuro.
+      </p>
+      <h2>PHPUnit</h2>
+      <p>
+        Execute testes unitários usando PHPUnit. Substitua "nomedoteste" e
+        "nomedafunçao" pelos nomes apropriados:
+      </p>
+      <pre><code>./vendor/bin/phpunit --filter=nomedoteste::nomedafunçao</code></pre>
+
+      <h2>ORM Doctrine QueryBuilder</h2>
+      <p>
+        Para criar consultas usando o QueryBuilder do Doctrine, consulte a
+        documentação oficial em
+        <a
+          href="https://www.doctrine-project.org/projects/doctrine-dbal/en/3.6/reference/query-builder.html"
+          target="_blank"
+          >Doctrine QueryBuilder</a
+        >.
+      </p>
+
+      <h2>Instanciar um Model</h2>
+      <p>Instancie um modelo da aplicação da seguinte forma:</p>
+      <pre><code>$Model = app(Model::class);</code></pre>
+
+      <h2>Popular e Salvar um Model</h2>
+      <p>Para popular e salvar um modelo, utilize os seguintes comandos:</p>
+      <pre><code>$model->populateFromArray($array);</code></pre>
+      <pre><code>$saved = $model->save();</code></pre>
+      <p>Para obter erros em caso de falha:</p>
+      <pre><code>if (!$saved) {<br>    return $model->getErrors();<br>}</code></pre>
+
+      <h2>Usuário do Admin Geral</h2>
+      <p>
+        Para obter informações sobre o usuário logado no painel de
+        administração, utilize os seguintes comandos:
+      </p>
+      <pre><code>$UserModel = app(User::class);</code></pre>
+      <pre><code>$UserModel->findById($UserModel->getAuthId());</code></pre>
+
+      <h2>Jobs e Logs</h2>
+      <p>Os jobs estão localizados em `application/src/application`.</p>
+      <p>Os logs de erros podem ser encontrados em `application/logs`.</p>
+      <p>
+        Para salvar modificações no log "MongoDB", utilize o seguinte código:
+      </p>
+      <pre><code>$log = app()->getModelChangeLoggerService()->logUpdate($modelAtualizado, ['status' => 'status'], usuarioQueEstaLogado);</code></pre>
+
+      <h2>Gerar uma View em PHP</h2>
+      <p>
+        Para gerar uma view em PHP com as configurações especificadas, siga os
+        passos abaixo:
+      </p>
+
+      <ol>
+        <li>
+          Defina o título da página principal utilizando o seguinte código:
+        </li>
+        <pre><code>$this->getUiManager()->setPageSuperTitle('Painel de suporte');</code></pre>
+
+        <li>Defina o subtítulo da página utilizando:</li>
+        <pre><code>$this->getUiManager()->setPageTitle('Subtítulo');</code></pre>
+
+        <li>Configure a localização para 'pt-BR' com o seguinte código no controller:</li>
+        <pre><code>Carbon::setLocale('pt-BR');</code></pre>
+
+        <li>Para incluir o jQuery na sua view, utilize o código a seguir:</li>
+        <pre><code>$this->useApp('admin-common');</code></pre>
+    
+
+        <li>No controller coloque o seguinte comando para gerar a view:</li>
+        <pre><code>return $this->createView('caminho até a view');</code></pre>
+
+        <li>
+          Adicione o Vue.js ao seu arquivo PHP utilizando o seguinte código:
+        </li>
+        <pre><code>$this->useApp('itens-reserva-app');</code></pre>
+
+        <li>
+          Adicione a seguinte div com o ID "reservas_suport" na sua view PHP:
+        </li>
+        <pre><code>&lt;div id="reservas_suport"&gt;
+            reservas_suport pedido="passando props do php para o vue.js"/&gt;
+&lt;/div&gt;</code></pre>
+      </ol>
+
+      <p>
+        Ao seguir esses passos, você estará configurando uma view em PHP com as
+        configurações desejadas.
+      </p>
+      <h2>Configurações de view com kohana no sistema de config</h2>
+      <pre><code>
+        <?php
+
+return [
+    'singular'           => 'Transação', // nome 
+    'plural'             => 'Extrato de Transações', // nome que fixa no menu
+    'gender'             => 'm', // masculino ou feminino 
+    'model'              => '\\Afiliados\\Model\\Lancamento', // model
+    'active_menu'        => 'afiliados', // menu onde fica 
+    'helper_youtube'     => '#', // não sei para quer serve
+    'controller'         => \Lojas\Admin\AfiliadoCrudController::class, // o controller responsavel
+    'ajuda_link_style' => Mix\UiManager::HELP_LINK_STYLE_LABEL, // adiciona o botão de ajuda
+    'ajuda_link_label' => 'Entenda os tipos de transações', // adiciona o texto do botão de ajuda 
+    'table'              => [ // aqui é a tabela e o que vai aparecer na view ou não com true e false
+        'fields'           => [
+            'lojas_afiliados_lancamentos.id'        => 'ID',
+            'afiliados.nome'                        => false,
+            'lojas_afiliados_lancamentos.loja_id'   => false,
+            'afiliados.email'                       => false,
+            'afiliados.telefone'                    => false,
+            'lojas_afiliados_lancamentos.valor'     => 'Comissão',
+            'lojas_afiliados_lancamentos.tipo'      => 'Cadastrado em ',
+            'lojas_afiliados_lancamentos.natureza'  => 'Status',
+            'lojas_afiliados_lancamentos.data_hora' => false,
+            'lojas_afiliados_lancamentos.status'    => false,
+            'lojas_afiliados_lancamentos.pedido_id' => false,
+            'lojas_afiliados_lancamentos.anexo'     => false,
+        ],
+        'custom_view' => 'admin/afiliados/lancamentos', // pode gerar uma view customizada depois do forme
+        'hidden'      => [
+            'loja_id', 'email', 'telefone', 'data_hora_atualizacao', // o que não deve aparecer na view
+        ],
+        'labels' => [ // os nomes 
+            'nome'            => 'Nome',
+            'tipo_documento'  => 'Tipo do documento',
+            'documento'       => 'Documento',
+            'email'           => 'E-mail',
+            'comissao'        => 'Comissão',
+            'status'          => 'Status',
+        ],
+        'sort_fields'      => [] // deve ser para ordenar algo, 
+    ],
+    'can_edit'    => false, // não sei para que serve
+    'can_view'    => false, // não sei para que serve
+    'can_delete'  => false, //não sei para que serve
+    'can_add'     => false, // se for true é para para outra view se for false customiza o botão
+    'form_view'   => 'admin/afiliados/form/lancamento', // caminho do form da pagina carregada
+    'form_layout' => [ // o formulário os numero é o tanho dos campos
+        ['afiliado_id' => 5, '_SALDO' => 3, 'tipo' => 4],
+        ['valor' => 3, 'anexo' => 4],
+    ],
+    'custom_page_action' => [//botão customizado para a brir um modal
+        'id'     => 'insert',
+        'text'   => 'Adicionar transação',
+        'link'   => 'javascript:void(0);',
+        'icon'   => 'fas fa-plus',
+        'attrs'  => [
+            'data-toggle' => 'modal',
+            'data-target' => '#exampleModal',
+        ],
+        'weight' => 0,
+        'type'   => 'primary',
+        'scope'  => 'default',
+    ],
+];
+      </code></pre>    
+      <h2> Exemplo  de Configuração de um Model Sistema Kohana para Formulário</h2>
+      <pre>
+        <code>
+          public function init()
+          {
+               Campo 'loja_id': Representa o ID da loja associada à configuração.
+               Este campo é obrigatório e deve existir na tabela 'lojas' no banco de dados.
+
+              $this->integer('loja_id', 'Loja')->mandatory()->exists('lojas', 'id');
+      
+               Campo 'anexo': Permite fazer upload de um comprovante.
+               Os arquivos devem ser armazenados na pasta 'lancamentos'.
+               Aceita os formatos: pdf, jpg, jpeg e png.
+               O tamanho máximo permitido é de 200 KB.
+
+              $this->upload(
+                  'anexo',
+                  'Comprovante',
+                  'lancamentos',
+                  null,
+                  ['pdf', 'jpg', 'jpeg', 'png'],
+                  [],
+                  1024 * 200
+              )->setInfo('Comprovante com tamanho máximo de 100KB.');
+      
+               Se a variável $lojaId estiver vazia, geralmente na área do afiliado:
+
+              if (empty($lojaId)) {
+                   Campo 'afiliado_id': Representa o ID do afiliado associado à transação.
+                   Este campo é obrigatório e deve existir na tabela 'afiliados' no banco de dados.
+                  $this->integer('afiliado_id', 'Afiliado')->mandatory()->exists('afiliados', 'id');
+              } else {
+                   Se estiver no painel de administração:
+                   Campo 'afiliado_id': Permite selecionar um afiliado a partir de um banco de dados.
+                   Os dados são obtidos da tabela 'afiliados' e exibidos como opções.
+                   É obrigatório e deve existir na tabela 'afiliados' no banco de dados.
+
+                  $this->dbOptions(
+                      'afiliado_id',
+                      'Selecione o Afiliado',
+                      'afiliados',
+                      'id',
+                      'nome',
+                      '(Selecione o afiliado/parceiro)',
+                      '(Você não possui afiliados/parceiros)',
+                      function (\Doctrine\DBAL\Query\QueryBuilder $query) use ($lojaId) {
+                          $query->select('afiliados.id', 'afiliados.nome');
+                          $query->join(
+                              'afiliados',
+                              'lojas_afiliados',
+                              'la',
+                              'la.afiliado_id=afiliados.id and la.loja_id=:loja_id'
+                          )->setParameter('loja_id', $lojaId);
+                      },
+                      null,
+                      true  Ordenar por label
+                  )->mandatory()->exists('afiliados', 'id');
+      
+                   Define 'loja_id' como o ID da loja obtido anteriormente.
+                   Define 'natureza' como 'NATUREZA_MANUAL'.
+                  $this->loja_id  = $lojaId;
+                  $this->natureza = self::NATUREZA_MANUAL;
+              }
+      
+               Campo 'pedido_id': Representa o ID do pedido associado à transação.
+               Deve existir na tabela 'lojas_pedidos' no banco de dados.
+
+              $this->integer('pedido_id', 'Pedido')->exists('lojas_pedidos', 'id');
+      
+               Campo 'valor': Representa o valor da transação.
+               É um campo monetário com um decorador que exibe "R$" antes do valor.
+               É obrigatório.
+
+              $this->money('valor', 'Valor')
+                  ->addDecorator(new \Mix\Model\Field\Decorator\InputGroupDecorator('R$'))
+                  ->mandatory();
+      
+               Campo 'status': Permite escolher o status da transação a partir de opções predefinidas.
+               É obrigatório.
+
+              $this->options('status', 'Status', self::getStatuses())->mandatory();
+      
+               Campo 'tipo': Permite escolher o tipo da operação a partir de opções predefinidas.
+               O valor padrão é '(Selecione a operação)'.
+               É obrigatório.
+
+              $this->options('tipo', 'Operação', self::getTipos(), '(Selecione a operação)')->mandatory();
+      
+               Campo 'natureza': Permite escolher a natureza da transação a partir de opções predefinidas.
+               É obrigatório.
+
+              $this->options('natureza', 'Natureza', self::getNaturezas())->mandatory();
+      
+               Campo 'data_hora': Representa a data e a hora da transação.
+      
+               Campo 'data_hora_atualizacao': Representa a data e a hora da última atualização da transação.
+               Este campo é somente leitura e oculto.
+      
+               Campo 'afiliado_conta_id': Representa o ID da conta do afiliado associada à transação.
+      
+               Define 'status' como 'STATUS_ATIVO' e 'afiliado_conta_id' como nulo.
+
+              $this->status            = self::STATUS_ATIVO;
+              $this->afiliado_conta_id = null;
+          }
+        </code>
+      </pre>
+      <h2>Criando um Novo Módulo</h2>
+<p>Para criar um novo módulo no Kohana, siga estes passos:</p>
+<ol>
+  <li>
+    Navegue até o arquivo <code>application/bootstrap/modules.php</code>.
+  </li>
+  <li>
+    No array de módulos, adicione o nome do novo módulo juntamente com seu caminho. Por exemplo:
+    <pre>
+      'zoop' => MODPATH . 'zoop',
+    </pre>
+  </li>
+  <li>
+    Crie um diretório com o mesmo nome do seu módulo na pasta <code>modules</code>.
+  </li>
+  <li>
+    Dentro do diretório do seu módulo, crie os seguintes subdiretórios:
+    <ul>
+      <li><code>config</code></li>
+      <li><code>src</code></li>
+        <ul>
+          <li><code>model</code></li>
+          <li><code>controller</code></li>
+        </ul>
+      <li><code>views</code></li>
+      <li><code>bootstrap</code></li>
+    </ul>
+  </li>
+  <li>
+    Coloque as rotas do seu módulo no diretório <code>bootstrap</code>.
+  </li>
+</ol>
+<p>
+  Seguindo esses passos, você pode criar um novo módulo no Kohana e organizar seu código nos diretórios especificados.
+</p>
+
+<h3>Configurando Menus</h3>
+<p>Admin Geral: Dentro do arquivo `modules/admin/src/Admin/Ui/Menu.php`, você pode configurar os menus que aparecem no navbar do admin geral.</p>
+<p>Lojas: Dentro do arquivo `modules/lojas/src/Lojas/Ui/Menu.php`, você pode configurar os menus que aparecem no navbar das lojas. Abaixo está um exemplo de como adicionar itens de menu:</p>
+<pre><code>
+    $item = new Item('suporte', 'Suporte');
+    
+    $group = new Group();
+    
+    $group->addItem(new Item(
+        'juno',
+        'Contas Juno',
+        $this->getRouteUrl('admin.support.juno'),  Se for um controlador
+    ));
+    $group->addItem(new Item(
+        'extrato_transacoes',
+        'Transações',
+        $this->getConfigUrl('extrato_transacoes'),  Se for uma config
+    )); 
+    
+    $this->addItem($item);
+</code></pre>
+
+<h3>Adicionar Botão de Ajuda</h3>
+<p>Fica localizado application/config/ajuda.php</p>
+<pre><code>
+  adicione um novo array  no ajuda.php
+  'paypal' => [
+  'link'  => 'https://atendimento.paytour.com.br/kb/pt-br/article/72236/paypal',
+  'video' => null,
+  ],
+  adicione no controllador adicione uma nova função
+  public function preIndex($totalRows)
+  {
+      $this->checkAjuda($this->getConfigKey());
+      parent::preIndex($totalRows);
+  }
+
+  no config  lembre-se de colocar as seguintes chaves no array
+  'controller'         => \Lojas\Admin\AfiliadoCrudController::class, o controller responsavel
+    'ajuda_link_style' => Mix\UiManager::HELP_LINK_STYLE_LABEL, adiciona o botão de ajuda
+    'ajuda_link_label' => 'Entenda os tipos de transações', adiciona o texto do botão de ajuda 
+</code></pre>
+<p>Ao seguir esses passos, você estará configurando o botão de ajuda.</p>
+</div>
+</body>
+</html>
+
+
+
+
+
